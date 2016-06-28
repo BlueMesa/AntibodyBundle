@@ -18,6 +18,7 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Entity;
 
+use Bluemesa\Bundle\AntibodyBundle\Entity\Antibody;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -93,7 +94,7 @@ class Tube extends RackContent implements TermocontrolledInterface
     /**
      * Get antibody
      * 
-     * @return Bluemesa\Bundle\AntibodyBundle\Entity\Antibody
+     * @return Antibody
      */
     public function getAntibody() {
         return $this->antibody;
@@ -102,7 +103,7 @@ class Tube extends RackContent implements TermocontrolledInterface
     /**
      * Set antibody
      * 
-     * @param Bluemesa\Bundle\AntibodyBundle\Entity\Antibody $antibody
+     * @param Antibody $antibody
      */
     public function setAntibody(Antibody $antibody = null) {
         $this->antibody = $antibody;
