@@ -18,7 +18,10 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Form;
 
+use Bluemesa\Bundle\AntibodyBundle\Search\SearchQuery;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,17 +35,9 @@ class SearchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "search_form";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('terms', 'text', array(
+        $builder->add('terms', TextType::class, array(
                 'required' => false,
                 'horizontal' => false,
                 'label_render' => false,
@@ -51,7 +46,7 @@ class SearchType extends AbstractType
                     'placeholder' => 'Search'
                 )
             )
-        )->add('filter', 'hidden', array('required' => false));
+        )->add('filter', HiddenType::class, array('required' => false));
     }
     
     /**
@@ -60,7 +55,7 @@ class SearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-                'data_class' => 'Bluemesa\Bundle\AntibodyBundle\Search\SearchQuery'
+                'data_class' => SearchQuery::class
             )
         );
     }

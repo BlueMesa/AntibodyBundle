@@ -55,6 +55,6 @@ class AntibodyController extends SecureCRUDController
      */
     protected function getEditForm()
     {
-        return new AntibodyType();
+        return AntibodyType::class;
     }
 }

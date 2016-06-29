@@ -18,7 +18,10 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Form;
 
+use Bluemesa\Bundle\AntibodyBundle\Search\SearchQuery;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,17 +35,9 @@ class AdvancedSearchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "advanced_search_form";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('terms', 'text', array(
+        $builder->add('terms', TextType::class, array(
                 'label' => 'Include terms',
                 'required' => false,
                 'attr' => array(
@@ -50,7 +45,7 @@ class AdvancedSearchType extends AbstractType
                     'placeholder' => 'separate terms with space'
                 )
             )
-        )->add('excluded', 'text', array(
+        )->add('excluded', TextType::class, array(
                 'label' => 'Exclude terms',
                 'required' => false,
                 'attr' => array(
@@ -58,7 +53,7 @@ class AdvancedSearchType extends AbstractType
                     'placeholder' => 'separate terms with space'
                 )
             )
-        )->add('filter', 'choice', array(
+        )->add('filter', ChoiceType::class, array(
                 'label' => 'Scope',
                 'choices' => array(
                     'primary' => 'Primary',
@@ -78,7 +73,7 @@ class AdvancedSearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-                'data_class' => 'Bluemesa\Bundle\AntibodyBundle\Search\SearchQuery'
+                'data_class' => SearchQuery::class
             )
         );
     }

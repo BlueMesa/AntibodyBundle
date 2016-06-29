@@ -43,7 +43,7 @@ class SearchController extends BaseSearchController
      */
     protected function getSearchForm()
     {
-        return new SearchType();
+        return SearchType::class;
     }
     
     /**
@@ -51,7 +51,7 @@ class SearchController extends BaseSearchController
      */
     protected function getAdvancedSearchForm()
     {
-        return new AdvancedSearchType();
+        return AdvancedSearchType::class;
     }
     
     /**

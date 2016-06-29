@@ -18,7 +18,12 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Form;
 
+use Bluemesa\Bundle\AntibodyBundle\Entity\Application;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,17 +37,10 @@ class ApplicationType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "application";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('type', 'choice', array(
+        $builder->add('type', ChoiceType::class, array(
+                        'horizontal' => true,
                         'label'     => 'Type',
                         'required'  => true,
                         'choices' => array(
@@ -50,16 +48,19 @@ class ApplicationType extends AbstractType
                             'Immunostaining' => 'Immunostaining',
                             'Immunoprecipitation' => 'Immunoprecipitation',
                         )))
-                ->add('dilution', 'number', array(
+                ->add('dilution', NumberType::class, array(
+                        'horizontal' => true,
                         'label'     => 'Dilution',
                         'attr'      => array('class' => 'input-small'),
                         'widget_addon_prepend' => array(
                             'text' => '1:',
                         )))
-                ->add('notes', 'textarea', array(
+                ->add('notes', TextareaType::class, array(
+                        'horizontal' => true,
                         'label' => 'Notes',
                         'required' => false))
-                ->add('verified', 'checkbox', array(
+                ->add('verified', CheckboxType::class, array(
+                        'horizontal' => true,
                         'label' => '',
                         'required' => false));
     }
@@ -70,7 +71,7 @@ class ApplicationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Bluemesa\Bundle\AntibodyBundle\Entity\Application'
+            'data_class' => Application::class
         ));
     }
 }

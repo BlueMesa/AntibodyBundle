@@ -18,6 +18,7 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Entity;
 
+use Bluemesa\Bundle\AclBundle\Entity\SecureEntity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -35,7 +36,7 @@ use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class Antibody extends Entity implements TermocontrolledInterface
+class Antibody extends SecureEntity implements TermocontrolledInterface
 { 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
