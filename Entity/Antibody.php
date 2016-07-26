@@ -19,14 +19,11 @@
 namespace Bluemesa\Bundle\AntibodyBundle\Entity;
 
 use Bluemesa\Bundle\AclBundle\Entity\SecureEntity;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use Doctrine\Common\Collections\ArrayCollection;
-
-use Bluemesa\Bundle\CoreBundle\Entity\Entity;
-use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 
 /**
  * Antibody class
@@ -135,14 +132,14 @@ class Antibody extends SecureEntity implements TermocontrolledInterface
     /**
      * @ORM\OneToMany(targetEntity="Tube", mappedBy="antibody", cascade={"persist"}, fetch="EXTRA_LAZY")
      *
-     * @var \Doctrine\Common\Collections\Collection
+     * @var ArrayCollection
      */
     protected $tubes;
 
     /**
      * @ORM\OneToMany(targetEntity="Application", mappedBy="antibody", cascade={"persist", "remove"}, orphanRemoval=true)
      *
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      */
     protected $applications;
     
@@ -379,7 +376,7 @@ class Antibody extends SecureEntity implements TermocontrolledInterface
     /**
      * Get applications
      *
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return ArrayCollection
      */
     public function getApplications()
     {
@@ -389,7 +386,7 @@ class Antibody extends SecureEntity implements TermocontrolledInterface
     /**
      * Add application
      *
-     * @param \Bluemesa\Bundle\AntibodyBundle\Entity\Application $application
+     * @param Application $application
      */
     public function addApplication(Application $application)
     {
@@ -405,7 +402,7 @@ class Antibody extends SecureEntity implements TermocontrolledInterface
     /**
      * Remove application
      *
-     * @param \Bluemesa\Bundle\AntibodyBundle\Entity\Application $application
+     * @param Application $application
      */
     public function removeApplication(Application $application)
     {
@@ -415,7 +412,7 @@ class Antibody extends SecureEntity implements TermocontrolledInterface
     /**
      * Get tubes
      *
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return ArrayCollection
      */
     public function getTubes()
     {
@@ -425,7 +422,7 @@ class Antibody extends SecureEntity implements TermocontrolledInterface
     /**
      * Add tube
      *
-     * @param \Bluemesa\Bundle\AntibodyBundle\Entity\Tube $tube
+     * @param Tube $tube
      */
     public function addTube(Tube $tube)
     {
@@ -443,7 +440,7 @@ class Antibody extends SecureEntity implements TermocontrolledInterface
     /**
      * Remove tube
      *
-     * @param \Bluemesa\Bundle\AntibodyBundle\Entity\Tube $tube
+     * @param Tube $tube
      */
     public function removeTube(Tube $tube)
     {

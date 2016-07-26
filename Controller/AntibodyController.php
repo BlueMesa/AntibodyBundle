@@ -22,8 +22,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Bluemesa\Bundle\AclBundle\Controller\SecureCRUDController;
 
-use Bluemesa\Bundle\AntibodyBundle\Entity\Antibody;
-use Bluemesa\Bundle\AntibodyBundle\Entity\Application;
+use Bluemesa\Bundle\AntibodyBundle\Entity\Construct;
+use Bluemesa\Bundle\AntibodyBundle\Entity\Method;
 use Bluemesa\Bundle\AntibodyBundle\Form\AntibodyType;
 
 /**
@@ -37,18 +37,6 @@ class AntibodyController extends SecureCRUDController
 {
     const ENTITY_CLASS = 'Bluemesa\Bundle\AntibodyBundle\Entity\Antibody';
     const ENTITY_NAME = 'antibody|antibodies';
-
-    /**
-     * Construct AntibodyController
-     *
-     */
-    public function __construct()
-    {
-        $antibody = new Antibody;
-        $application = new Application;
-        
-        $antibody->addApplication($application);
-    }
 
     /**
      * {@inheritdoc}

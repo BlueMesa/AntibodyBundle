@@ -18,16 +18,11 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Entity;
 
-use Bluemesa\Bundle\AntibodyBundle\Entity\Antibody;
+use Bluemesa\Bundle\StorageBundle\Entity\RackContent;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Criteria;
-
-use Bluemesa\Bundle\StorageBundle\Entity\RackContent;
-use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 
 /**
  * Tube class

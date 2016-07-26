@@ -41,7 +41,7 @@ class Application extends Entity
      * @Serializer\Expose
      * @Assert\NotBlank(message = "Antibody must be specified")
      *
-     * @var Bluemesa\Bundle\AntibodyBundle\Entity\Antibody
+     * @var Antibody
      */
     protected $antibody;
     
@@ -90,7 +90,7 @@ class Application extends Entity
     /**
      * Get antibody
      * 
-     * @return Bluemesa\Bundle\AntibodyBundle\Entity\Antibody
+     * @return Antibody
      */
     public function getAntibody() {
         return $this->antibody;
@@ -99,7 +99,7 @@ class Application extends Entity
     /**
      * Set antibody
      * 
-     * @param \Bluemesa\Bundle\AntibodyBundle\Entity\Antibody $antibody
+     * @param Antibody $antibody
      */
     public function setAntibody(Antibody $antibody) {
         $this->antibody = $antibody;
