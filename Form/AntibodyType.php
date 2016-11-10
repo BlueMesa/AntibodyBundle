@@ -51,15 +51,15 @@ class AntibodyType extends AbstractType
                         'label'     => 'Type',
                         'required'  => true,
                         'choices' => array(
-                            'primary' => 'Primary',
-                            'secondary' => 'Secondary',
+                            'Primary' => 'primary',
+                            'Secondary' => 'secondary',
                         )))
                 ->add('type', ChoiceType::class, array(
                         'label_render' => false,
                         'required'  => true,
                         'choices' => array(
-                            'monoclonal' => 'Monoclonal',
-                            'polyclonal' => 'Polyclonal',
+                            'Monoclonal' => 'monoclonal',
+                            'Polyclonal' => 'polyclonal',
                         )))
                 ->add('class', ChoiceType::class, array(
                         'label_render' => false,
@@ -67,7 +67,7 @@ class AntibodyType extends AbstractType
                         'choices' => array(
                             'IgG' => 'IgG',
                             'IgM' => 'IgM',
-                            'nanobody' => 'Nanobody',
+                            'Nanobody' => 'nanobody',
                         )))
                 ->add('clone', TextType::class, array(
                         'label'     => 'Clone'))

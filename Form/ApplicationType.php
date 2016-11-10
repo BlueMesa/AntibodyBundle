@@ -44,8 +44,8 @@ class ApplicationType extends AbstractType
                         'label'     => 'Type',
                         'required'  => true,
                         'choices' => array(
-                            'Western blot' => 'Western blot',
-                            'Immunostaining' => 'Immunostaining',
+                            'Western blot'        => 'Western blot',
+                            'Immunostaining'      => 'Immunostaining',
                             'Immunoprecipitation' => 'Immunoprecipitation',
                         )))
                 ->add('dilution', NumberType::class, array(
