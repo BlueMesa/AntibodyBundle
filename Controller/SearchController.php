@@ -69,6 +69,7 @@ class SearchController extends BaseSearchController
     {
         $searchQuery = new SearchQuery($advanced);
         $searchQuery->setTokenStorage($this->getTokenStorage());
+        $searchQuery->setAuthorizationChecker($this->getAuthorizationChecker());
         
         return $searchQuery;
     }
