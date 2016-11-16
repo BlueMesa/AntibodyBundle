@@ -53,11 +53,22 @@ class AdvancedSearchType extends AbstractType
                     'placeholder' => 'separate terms with space'
                 )
             )
-        )->add('filter', ChoiceType::class, array(
-                'label' => 'Scope',
+        )->add('aborder', ChoiceType::class, array(
+                'label' => 'Order',
                 'choices' => array(
                     'Primary' => 'primary',
                     'Secondary' => 'secondary'
+                ),
+                'expanded' => true,
+                'placeholder' => 'All',
+                'empty_data' => 'all',
+                'required' => false
+            )
+        )->add('type', ChoiceType::class, array(
+                'label' => '',
+                'choices' => array(
+                    'Monoclonal' => 'monoclonal',
+                    'Polyclonal' => 'polyclonal'
                 ),
                 'expanded' => true,
                 'placeholder' => 'All',

@@ -3,13 +3,129 @@
 {% block headline %}Antibodies{% endblock headline %}
 
 {% block content_sidebar %}
-<ul class="nav nav-list well">
-  <li class="nav-header">List</li>
-  <li><a href="{{ path('bluemesa_antibody_antibody_list') }}">All</a></li>
-  <li><a href="{{ path('bluemesa_antibody_antibody_list') }}">Primary</a></li>
-  <li><a href="{{ path('bluemesa_antibody_antibody_list') }}">Secondary</a></li>
-  <li class="nav-header">Actions</li>
-  <li><a href="{{ path('bluemesa_antibody_antibody_create') }}">New antibody</a></li>
-  <li><a href="{{ path('bluemesa_antibody_search_advanced') }}">Search</a></li>
-</ul>
+  {% block sidebar_display %}
+    <form class="panel panel-default panel-condensed" action="{{ path('bluemesa_antibody_index') }}" method="GET">
+      <div class="panel-heading">
+        <h3 class="panel-title"><a data-toggle="collapse" href="#dislpay">List options</a></h3>
+      </div>
+      <ul id="dislpay" class="list-group collapse mobile-collapsed in">
+        {% block sidebar_display_order %}
+          <li class="list-group-item">
+            <h5>Antibody order</h5>
+            <ul>
+              <li>
+                <label>
+                  <input class="toggle-children" type="radio" name="aborder" id="aborder_all" value="all"
+                          {{ (filter is not defined or filter.aborder == 'all') ? 'checked' }} >
+                  All
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input class="toggle-children" type="radio" name="aborder" id="aborder_primary" value="primary"
+                          {{ (filter is defined and filter.aborder == 'primary') ? 'checked' }} >
+                  Primary
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input class="toggle-children" type="radio" name="aborder" id="aborder_secondary" value="secondary"
+                          {{ (filter is defined and filter.aborder == 'secondary') ? 'checked' }} >
+                  Secondary
+                </label>
+              </li>
+            </ul>
+          </li>
+        {% endblock sidebar_display_order %}
+        {% block sidebar_display_filters %}
+          <li class="list-group-item">
+            <h5>Antibody type</h5>
+            <ul>
+              <li>
+                <label>
+                  <input class="toggle-children" type="radio" name="type" id="type_all" value="all"
+                          {{ (filter is not defined or filter.type == 'all') ? 'checked' }} >
+                  All
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input class="toggle-children" type="radio" name="type" id="type_monoclonal" value="monoclonal"
+                          {{ (filter is defined and filter.type == 'monoclonal') ? 'checked' }} >
+                  Monoclonal
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input class="toggle-children" type="radio" name="type" id="type_polyclonal" value="polyclonal"
+                          {{ (filter is defined and filter.type == 'polyclonal') ? 'checked' }} >
+                  Polyclonal
+                </label>
+              </li>
+            </ul>
+          </li>
+        {% endblock sidebar_display_filters %}
+        {% block sidebar_display_sort %}
+          <li class="list-group-item">
+            <h5>Sort by</h5>
+            <ul>
+              <li>
+                <label>
+                  <input type="radio" name="sort" id="sort_antigen" value="antigen"
+                          {{ (filter is not defined or filter.sort == 'antigen') ? 'checked' }} >
+                  Antigen
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="sort" id="sort_type" value="type"
+                          {{ (filter is defined and filter.sort == 'type') ? 'checked' }} >
+                  Type
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="sort" id="sort_host" value="host"
+                          {{ (filter is defined and filter.sort == 'host') ? 'checked' }} >
+                  Host species
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="sort" id="sort_target" value="target"
+                          {{ (filter is defined and filter.sort == 'target') ? 'checked' }} >
+                  Target species
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" name="order" id="order" value="desc"
+                          {{ (filter is defined and filter.order == 'desc') ? 'checked' }} >
+                  Descending
+                </label>
+              </li>
+            </ul>
+          </li>
+        {% endblock sidebar_display_sort %}
+        <li class="panel-footer">
+          <input type="hidden" name="resolver" value="on">
+          <button type="submit" class="btn btn-primary btn-sm btn-block">
+            List antibodies
+          </button>
+        </li>
+      </ul>
+    </form>
+  {% endblock sidebar_display %}
+  {% block sidebar_actions %}
+    <div class="panel panel-default panel-condensed">
+      <div class="panel-heading">
+        <h3 class="panel-title"><a data-toggle="collapse" href="#actions">Actions</a></h3>
+      </div>
+      <ul id="actions" class="list-group collapse mobile-collapsed in">
+        <a class="list-group-item" href="{{ path('bluemesa_antibody_new') }}">New antibody</a>
+        <a class="list-group-item" href="{{ path('bluemesa_antibody_search_advanced') }}">Search</a>
+      </ul>
+    </div>
+  {% endblock sidebar_actions %}
+  {{ parent() }}
 {% endblock content_sidebar %}

@@ -106,7 +106,8 @@ class AntibodyType extends AbstractType
                          'widget_add_btn' => array('label' => false, 'icon' => 'plus'),
                          'entry_options' => array(
                              'label' => false,
-                             'widget_remove_btn' => array('label' => false, 'icon' => 'times')
+                             'widget_remove_btn' => array('label' => false, 'icon' => 'times'),
+                             'horizontal_input_wrapper_class' => false,
                          )
                        )
                      );

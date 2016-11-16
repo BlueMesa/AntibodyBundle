@@ -72,5 +72,8 @@
 {% endblock modal_body %}
 
 {% block modal_footer %}
-  {{ s.buttons(entity, 'bluemesa_antibody_antibody') }}
+  {% if is_granted('ROLE_ADMIN') or is_granted('EDIT', entity) %}
+    <a href="{{ path('bluemesa_antibody_edit', { 'id': entity.id }) }}" class="btn btn-primary">Edit</a>
+  {% endif %}
+  <a href="{{ path('bluemesa_antibody_index') }}" class="btn btn-default">List</a>
 {% endblock modal_footer %}

@@ -18,25 +18,70 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Bluemesa\Bundle\AclBundle\Controller\SecureController;
-
-use Bluemesa\Bundle\SearchBundle\Controller\SearchController as BaseSearchController;
+use Bluemesa\Bundle\AclBundle\DependencyInjection\AuthorizationCheckerAwareTrait;
+use Bluemesa\Bundle\AclBundle\DependencyInjection\TokenStorageAwareTrait;
 use Bluemesa\Bundle\AntibodyBundle\Search\SearchQuery;
 use Bluemesa\Bundle\AntibodyBundle\Form\SearchType;
 use Bluemesa\Bundle\AntibodyBundle\Form\AdvancedSearchType;
+use Bluemesa\Bundle\SearchBundle\Controller\SearchController as BaseSearchController;
+use FOS\RestBundle\Controller\Annotations as REST;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Search controller for the antibody bundle
  *
- * @Route("/search")
+ * @REST\Prefix("/antibodies/search")
+ * @REST\NamePrefix("bluemesa_antibody_search_")
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
 class SearchController extends BaseSearchController
 {
-    use SecureController;
+    use TokenStorageAwareTrait, AuthorizationCheckerAwareTrait;
+
+    /**
+     * Render advanced search form
+     *
+     * @REST\Get("", defaults={"_format" = "html"}))
+     * @REST\View()
+     *
+     * @return Response
+     */
+    public function advancedAction()
+    {
+        return parent::advancedAction();
+    }
+
+    /**
+     * Render quick search form
+     *
+     * @REST\Get("/simple", defaults={"_format" = "html"}))
+     * @REST\View()
+     *
+     * @return Response
+     */
+    public function searchAction()
+    {
+        return parent::searchAction();
+    }
+
+    /**
+     * Handle search result
+     *
+     * @REST\Get("/result", defaults={"_format" = "html"}))
+     * @REST\Post("/result", defaults={"_format" = "html"}))
+     * @REST\View()
+     *
+     * @param  Request $request
+     * @return array
+     */
+    public function resultAction(Request $request)
+    {
+        return parent::resultAction($request);
+    }
 
     /**
      * {@inheritdoc}

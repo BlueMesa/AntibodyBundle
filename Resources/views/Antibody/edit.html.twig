@@ -5,5 +5,14 @@
 {% block modal_header %}Edit antibody{% endblock modal_header %}
 
 {% block modal_footer %}
-  {{ f.buttons(form.vars.value,'bluemesa_antibody_antibody') }}
+  <button type="submit" class="btn btn-primary">Save</button>
+  {% set value = form.vars.value %}
+  {% if value.id is not null %}
+    {% if is_granted('ROLE_ADMIN') or is_granted('DELETE',value) %}
+      <a href="{{ path('bluemesa_antibody_show', { 'id': value.id }) }}" class="btn btn-danger">Delete</a>
+    {% endif %}
+    <a href="{{ path('bluemesa_antibody_show', { 'id': value.id }) }}" class="btn btn-default">Cancel</a>
+  {% else %}
+    <a href="{{ path('bluemesa_antibody_index') }}" class="btn btn-default">Cancel</a>
+  {% endif %}
 {% endblock modal_footer %}

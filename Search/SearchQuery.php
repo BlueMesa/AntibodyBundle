@@ -18,6 +18,7 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Search;
 
+use Bluemesa\Bundle\AntibodyBundle\Entity\Antibody;
 use JMS\Serializer\Annotation as Serializer;
 
 use Bluemesa\Bundle\SearchBundle\Search\ACLSearchQuery;
@@ -30,50 +31,78 @@ use Bluemesa\Bundle\SearchBundle\Search\ACLSearchQuery;
 class SearchQuery extends ACLSearchQuery
 {
     /**
-     * Search terms
-     * 
      * @Serializer\Type("string")
      * 
      * @var string
      */
-    protected $filter;
+    protected $aborder;
+
+    /**
+     * @Serializer\Type("string")
+     *
+     * @var string
+     */
+    protected $type;
     
     /**
      * {@inheritdoc}
      */
     public function __construct($advanced = false) {
         parent::__construct($advanced);
-        $this->filter = null;
+        $this->aborder = null;
+        $this->type = null;
     }
     
     /**
      * {@inheritdoc}
      */
     public function getEntityClass() {
-        return 'Bluemesa\Bundle\AntibodyBundle\Entity\Antibody';
+        return Antibody::class;
     }
 
     /**
-     * Get filter
+     * Get order
      * 
      * @return string
      */
-    public function getFilter() {
-        
-        if (empty($this->filter)) {
-            
+    public function getAborder() {
+        if (empty($this->aborder)) {
             return 'all';
         }
         
-        return $this->filter;
+        return $this->aborder;
     }
 
     /**
-     * Set filter
+     * Set order
      * 
-     * @param string $filter
+     * @param string $aborder
      */
-    public function setFilter($filter) {
-        $this->filter = $filter;
+    public function setAborder($aborder) {
+        $this->aborder = $aborder;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        if (empty($this->type)) {
+            return 'all';
+        }
+
+        return $this->type;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }

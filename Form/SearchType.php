@@ -46,7 +46,8 @@ class SearchType extends AbstractType
                     'placeholder' => 'Search'
                 )
             )
-        )->add('filter', HiddenType::class, array('required' => false));
+        )->add('aborder', HiddenType::class, array('required' => false)
+        )->add('type', HiddenType::class, array('required' => false));
     }
     
     /**
