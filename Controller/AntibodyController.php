@@ -11,6 +11,7 @@
 
 namespace Bluemesa\Bundle\AntibodyBundle\Controller;
 
+use Bluemesa\Bundle\CoreBundle\Controller\Annotations\Paginate;
 use Bluemesa\Bundle\CrudBundle\Controller\Annotations as CRUD;
 use Bluemesa\Bundle\CrudBundle\Controller\CrudControllerTrait;
 use FOS\RestBundle\Controller\Annotations as REST;
@@ -34,7 +35,6 @@ class AntibodyController extends Controller
 
     /**
      * @CRUD\Action("index")
-     * @CRUD\Paginate(25)
      * @CRUD\Filter("Bluemesa\Bundle\AntibodyBundle\Filter\AntibodyFilter", redirectRoute="bluemesa_antibody_index_type_sort")
      * @REST\View()
      * @REST\Get("", defaults={"_format" = "html"}))
@@ -49,6 +49,7 @@ class AntibodyController extends Controller
      *         "type" = "monoclonal|polyclonal|all",
      *         "sort" = "antigen|type"},
      *     defaults={"_format" = "html", "type" = "all", "order" = "asc"})
+     * @Paginate(25)
      *
      * @param  Request  $request
      * @return View
