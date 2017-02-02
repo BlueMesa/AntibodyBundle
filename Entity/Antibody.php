@@ -19,10 +19,12 @@
 namespace Bluemesa\Bundle\AntibodyBundle\Entity;
 
 use Bluemesa\Bundle\AclBundle\Entity\SecureEntity;
+use Bluemesa\Bundle\CoreBundle\Entity\MutableIdEntityInterface;
 use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -30,10 +32,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="Bluemesa\Bundle\AntibodyBundle\Repository\AntibodyRepository")
  * @Serializer\ExclusionPolicy("all")
+ * @UniqueEntity("id")
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class Antibody extends SecureEntity implements TermocontrolledInterface
+class Antibody extends SecureEntity implements MutableIdEntityInterface, TermocontrolledInterface
 { 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
@@ -168,7 +171,15 @@ class Antibody extends SecureEntity implements TermocontrolledInterface
                $this->getType() . " " .
                $this->getClass();
     }
-    
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     /**
      * Get antigen
      * 
